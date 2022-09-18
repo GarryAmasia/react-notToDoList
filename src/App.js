@@ -2,8 +2,16 @@ import React from "react";
 import "./App.css";
 import { AddTaskForm } from "./components/add-task-form/AddTaskForm";
 import { Container, Row, Col } from "react-bootstrap";
+import { useState } from "react";
 
 const App = () => {
+  const [tasks, setTasks] = useState([]);
+
+  const handleOnSubmit = (data) => {
+    setTasks([...tasks, data]);
+  };
+  console.log(tasks);
+
   return (
     <div className="wrapper text-center">
       <Container>
@@ -13,7 +21,7 @@ const App = () => {
           </Col>
         </Row>
         <hr />
-        <AddTaskForm />
+        <AddTaskForm handleSubmit={handleOnSubmit} />
         <hr />
       </Container>
     </div>

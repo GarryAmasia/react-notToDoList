@@ -8,17 +8,27 @@ const initialFormData = {
   hr: 0,
 };
 
-export const AddTaskForm = () => {
+export const AddTaskForm = ({ handleSubmit }) => {
   const [formDt, setFormDt] = useState(initialFormData);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    console.log(name);
-    console.log(value);
+
+    setFormDt({
+      ...formDt,
+      [name]: value,
+    });
+  };
+  //   console.log(formDt);
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    // console.log(formDt);
+    handleSubmit(formDt);
   };
 
   return (
-    <Form>
+    <Form onSubmit={handleOnSubmit}>
       <Row>
         <Col md={7} className="task">
           <Form.Control
