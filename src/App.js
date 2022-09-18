@@ -1,18 +1,33 @@
 import React from "react";
 import "./App.css";
 import { AddTaskForm } from "./components/add-task-form/AddTaskForm";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Alert } from "react-bootstrap";
 import { useState } from "react";
 import { TaskList } from "./components/task-list/TaskList";
 import { NotToDoList } from "./components/task-list/NotToDoList";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
+  const [badTasks, setBadTasks] = useState([]);
+
+  const totalHrs = tasks.reduce((subttl, item) => {
+    return subttl + +item.hr;
+  }, 0);
 
   const handleOnSubmit = (data) => {
     setTasks([...tasks, data]);
   };
   // console.log(tasks);
+
+  //mark from task list to bad task list
+  const markAsBadList = (theOneSelected, i) => {
+    console.log(theOneSelected, i);
+
+    //1.take the selected item out and place in bad array
+    const selectedItem = tasks[i];
+
+    //2.remove the item from task array list and update the array
+  };
 
   return (
     <div className="wrapper text-center">
@@ -28,10 +43,17 @@ const App = () => {
 
         <Row>
           <Col md="6" className="gl">
-            <TaskList tasks={tasks} />
+            <TaskList tasks={tasks} markAsBadList={markAsBadList} />
           </Col>
           <Col md="6" className="bl">
             <NotToDoList />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Alert variant="success">
+              Total Hours allocated ={totalHrs} hrs/week
+            </Alert>
           </Col>
         </Row>
       </Container>
