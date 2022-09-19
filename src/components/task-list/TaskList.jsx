@@ -3,6 +3,7 @@ import { Button, Table } from "react-bootstrap";
 
 export const TaskList = ({ tasks, markAsBadList }) => {
   //   console.log(tasks);
+
   return (
     <div>
       <h2>Task List</h2>

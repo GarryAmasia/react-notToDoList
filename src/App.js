@@ -21,13 +21,29 @@ const App = () => {
 
   //mark from task list to bad task list
   const markAsBadList = (theOneSelected, i) => {
-    console.log(theOneSelected, i);
+    // console.log(theOneSelected, i);
 
     //1.take the selected item out and place in bad array
     const selectedItem = tasks[i];
+    // console.log(selectedItem, i);
+    // console.log(theOneSelected);
 
-    //2.remove the item from task array list and update the array
+    setBadTasks([...badTasks, selectedItem]);
+
+    //2.remove the item from task array list and update the array -2 ways -
+
+    //1.filter method
+    // const tempArg = tasks.filter((item, index) => index !== i);
+    // setTasks(tempArg);
+    // console.log(tempArg);
+
+    //2.
+    const tempArg = [...tasks];
+    tempArg.splice(i, 1);
+    setTasks(tempArg);
   };
+
+  console.log(tasks, badTasks);
 
   return (
     <div className="wrapper text-center">
