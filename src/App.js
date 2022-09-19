@@ -33,14 +33,14 @@ const App = () => {
     //2.remove the item from task array list and update the array -2 ways -
 
     //1.filter method
-    // const tempArg = tasks.filter((item, index) => index !== i);
-    // setTasks(tempArg);
-    // console.log(tempArg);
+    const tempArg = tasks.filter((item, index) => index !== i);
+    setTasks(tempArg);
+    console.log(tempArg);
 
     //2.
-    const tempArg = [...tasks];
-    tempArg.splice(i, 1);
-    setTasks(tempArg);
+    // const tempArg = [...tasks];
+    // tempArg.splice(i, 1);
+    // setTasks(tempArg);
   };
 
   console.log(tasks, badTasks);
@@ -62,7 +62,7 @@ const App = () => {
             <TaskList tasks={tasks} markAsBadList={markAsBadList} />
           </Col>
           <Col md="6" className="bl">
-            <NotToDoList />
+            <NotToDoList badTasks={badTasks} />
           </Col>
         </Row>
         <Row>
